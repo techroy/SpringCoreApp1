@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="htmlmessageproducer" class="com.ioc.beans.HtmlMessageProducer" />
+
+
+	<bean id="textmessageproducer" class="com.ioc.beans.TextMessageProducer" />
+
+	<bean id="messagewriter" class="com.ioc.beans.MessageWriter">
+
+		<!--<property name="messageProducer" ref="textmessageproducer"></property> -->
+		<constructor-arg ref="htmlmessageproducer">
+		</constructor-arg>
+	</bean>
+
+	<bean id="messagebean" class="com.ioc.beans.MessageBean">
+
+		<constructor-arg value="12" />
+		<constructor-arg value="Hi how are you" />
+
+
+	</bean>
+
+	<bean id="student" class="com.ioc.collection.beans.Student">
+
+		<property name="list">
+
+			<list value-type="java.lang.String">
+				<value>C++</value>
+				<value>java</value>
+				<!-- <ref bean="messagebean"/> -->
+
+			</list>
+
+
+		</property>
+
+	</bean>
+
+	<bean id="btech" class="com.ioc.collection.beans.Course">
+
+		<constructor-arg>
+
+			<set value-type="java.lang.String">
+
+				<value>Max</value>
+				<value>Sam</value>
+
+			</set>
+
+		</constructor-arg>
+
+	</bean>
+
+	<bean id="mca" class="com.ioc.collection.beans.Course">
+
+		<constructor-arg>
+
+			<set value-type="java.lang.String">
+
+				<value>Max</value>
+				<value>Paul</value>
+
+			</set>
+
+		</constructor-arg>
+
+	</bean>
+	
+	<bean id="a1" class="com.ioc.collection.beans.A">
+	
+			<constructor-arg><null/></constructor-arg>
+	</bean>
+
+
+	<bean id="college" class="com.ioc.collection.beans.College">
+
+		<property name="studentCourseMap">
+
+			<map key-type="java.lang.String" value-type="com.ioc.collection.beans.Course">
+
+				<entry key="adam" value-ref="btech" />
+				<entry key="iain" value-ref="mca" />
+
+			</map>
+
+		</property>
+
+	</bean>
+
+	<bean id="onlinecourse" class="com.ioc.collection.beans.OnlineCourse">
+
+		<property name="courseWithFaculties">
+			<props>
+
+				<prop key="btek">max</prop>
+				<prop key="mca">Sam</prop>
+			</props>
+
+		</property>
+	</bean>
+
+
+</beans>
+
+
